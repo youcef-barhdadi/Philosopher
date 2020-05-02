@@ -1,0 +1,56 @@
+Script started on 2020-03-30 12:11:29-04:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="132" LINES="24"]
+[0;31m┌─[[0;39mycf[01;33m@[01;96mparrot[0;31m]─[[0;32m~/Desktop/libft_official[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mexit^C
+[0;31m┌─[[0;31m✗[0;37m]─[[0;39mycf[01;33m@[01;96mparrot[0;31m]─[[0;32m~/Desktop/libft_official[0;31m]
+[0;31m└──╼ [0m[01;33m$[0m^C
+[0;31m┌─[[0;31m✗[0;37m]─[[0;39mycf[01;33m@[01;96mparrot[0;31m]─[[0;32m~/Desktop/libft_official[0;31m]
+[0;31m└──╼ [0m[01;33m$[0mscript [1@m[1@a[1@n[1@ 
+[?1049h[22;0;0t[?1h=SCRIPT(1)                                                 User Commands                                                SCRIPT(1)[m
+[m
+[01;31mNAME[0m[m
+       script - make typescript of terminal session[m
+[m
+[01;31mSYNOPSIS[0m[m
+       [01;31mscript[0m [options] [[01;32mfile[0m][m
+[m
+[01;31mDESCRIPTION[0m[m
+       [01;31mscript[0m makes a typescript of everything displayed on your terminal.  It is useful for students who need a hardcopy record[m
+       of an interactive session as proof of an assignment, as the typescript file can be printed out later with [01;31mlpr[0m(1).[m
+[m
+       If the argument [01;32mfile[0m is given, [01;31mscript[0m saves the dialogue in this [01;32mfile[0m.  If no filename is given, the dialogue is saved in[m
+       the file [01;31mtypescript[0m.[m
+[m
+[01;31mOPTIONS[0m[m
+       Below, the [01;32msize[0m argument may be followed by the multiplicative suffixes KiB (=1024), MiB (=1024*1024), and so on for GiB,[m
+       TiB, PiB, EiB, ZiB and YiB (the "iB" is optional, e.g. "K" has the same meaning as "KiB"), or the suffixes KB (=1000), MB[m
+       (=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[m
+[m
+       [01;31m-a[0m, [01;31m--append[0m[m
+              Append the output to [01;32mfile[0m or to [01;31mtypescript[0m, retaining the prior contents.[m
+[m
+[01;44;33m Manual page script(1) line 1 (press h for help or q to quit)[0m[K[K       [01;31m-c[0m, [01;31m--command[0m [01;32mcommand[0m[m
+              Run the [01;32mcommand[0m rather than an interactive shell.  This makes it easy for a script to capture the output of a pro‐[m
+              gram that behaves differently when its stdout is not a tty.[m
+[m
+       [01;31m-e[0m, [01;31m--return[0m[m
+              Return the exit code of the child process.  Uses the same format as bash termination on  signal  termination  exit[m
+              code is 128+n.  The exit code of the child process is always stored in type script file too.[m
+[m
+       [01;31m-f[0m, [01;31m--flush[0m[m
+              Flush output after each write.  This is nice for telecooperation: one person does `mkfifo foo; script -f foo', and[m
+              another can supervise real-time what is being done using `cat foo'.[m
+[m
+[01;44;33m Manual page script(1) line 13 (press h for help or q to quit)[0m[K[K       [01;31m--force[0m[m
+              Allow the default output destination, i.e. the typescript file, to be a hard or symbolic link.  The  command  will[m
+              follow a symbolic link.[m
+[m
+       [01;31m-o[0m, [01;31m--output-limit[0m [01;32msize[0m[m
+              Limit  the size of the typescript and timing files to [01;32msize[0m and stop the child process after this size is exceeded.[m
+              The calculated file size does not include the start and done messages that the [01;31mscript[0m command prepends and appends[m
+              to  the  child  process  output.   Due  to buffering, the resulting output file might be larger than the specified[m
+              value.[m
+[m
+       [01;31m-q[0m, [01;31m--quiet[0m[m
+              Be quiet (do not write start and done messages to standard output).[m
+[01;44;33m Manual page script(1) line 25 (press h for help or q to quit)[0m[K
+Script done on 2020-03-30 12:24:20-04:00 [COMMAND_EXIT_CODE="0"]
