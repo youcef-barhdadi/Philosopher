@@ -6,18 +6,18 @@
 /*   By: ybarhdad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 23:17:40 by ybarhdad          #+#    #+#             */
-/*   Updated: 2019/10/15 23:22:41 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2020/06/06 07:20:14 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_philo.h"
 
 int	ft_atoi(char const *s)
 {
 	long			nbr;
 	long			sign;
 	int				i;
-	unsigned long	lon;
+	unsigned long long	lon;
 
 	lon = 9223372036854775807;
 	i = 0;

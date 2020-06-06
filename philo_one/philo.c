@@ -1,4 +1,16 @@
-#include "ft_phli.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybarhdad <ybarhdad@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/06 06:45:34 by ybarhdad          #+#    #+#             */
+/*   Updated: 2020/06/06 08:27:07 by ybarhdad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_philo.h"
 
 long get_time()
 {
@@ -17,11 +29,11 @@ t_phili **create_list(t_global *g)
 
 	int number = g->number;
 	phili = malloc(sizeof (t_phili *) * number);
-	ft_memset(phili,0, sizeof(t_phili *) * number);
+	memset(phili,0, sizeof(t_phili *) * number);
 	while(i < g->number)
 	{
 		phili[i] = malloc(sizeof(t_phili));
-		ft_bzero(phili[i], sizeof(t_phili));
+		memset(phili[i], 0,sizeof(t_phili));
 		pthread_mutex_init(&phili[i]->take, NULL);
 		pthread_mutex_init(&phili[i]->meal, NULL);
 		phili[i]->number = i + 1;
@@ -124,7 +136,6 @@ void*	check(void *data)
 void start_thread(t_phili **thread, int number)
 {	
 	int i = 0;
-	pthread_t death_angle;
 	while (i < number)
 	{
 		int num = pthread_create(&thread[i]->tid, NULL, start_phili, (void *)thread[i]);
@@ -144,11 +155,11 @@ void start_thread(t_phili **thread, int number)
 
 
 
-int parse_args(int argc, char **argv, t_global *global)
+void	parse_args(int argc, char **argv, t_global *global)
 {
 	if (argc != 5 && argc != 6)
 	{
-		printf("argc not enough");
+		ft_putstr_fd("number_of_philosophers time_to_die time_to_eat time_to_sleap [number_of_times_each_philospher_must_eat]\n", 1);
 		exit(1);
 	}
 	global->number = ft_atoi(argv[1]);
