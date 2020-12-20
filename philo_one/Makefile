@@ -5,7 +5,7 @@ obj=$(src::.c:.o)
 
 
 $(NAME):
-	gcc -Wall -Werror -Wextra -lpthread $(src) -o $(NAME)
+	gcc -Wall -Werror -Wextra -lpthread  -g -fsanitize=address  $(src)  # -o $(NAME)
 
 
 clean:

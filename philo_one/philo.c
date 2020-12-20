@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 06:45:34 by ybarhdad          #+#    #+#             */
-/*   Updated: 2020/06/06 08:27:07 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2020/12/20 04:47:48 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void ft_message(char *str, t_phili *phili)
 {
 	char *number;
 	long stamp;
-	pthread_mutex_lock(&phili->global->mutex);
+	pthread_mutex_lock(&phili->global->display);
 	stamp =  get_time()  - phili->global->start;
 	number = ft_lltoa(stamp);
 	ft_putstr_fd(number, 1);
@@ -76,7 +76,7 @@ void ft_message(char *str, t_phili *phili)
 	ft_putchar_fd(' ', 1);
 	ft_putstr_fd(str, 1);
 	write(1, "\n", 1);
-	pthread_mutex_unlock(&phili->global->mutex);
+	pthread_mutex_unlock(&phili->global->display);
 
 }
 void *start_phili(void *a)
@@ -120,15 +120,20 @@ void*	check(void *data)
 	while (phili->global->dead == 0  && phili->global->number != 0)
 	{
 		pthread_mutex_lock(&phili->meal);
-		if (get_time() - phili->last_meal > phili->global->to_die)
+		long time = get_time() - phili->last_meal;
+		if ( time > phili->global->to_die)
 		{
-			ft_message("DEAED", phili);
+			pthread_mutex_lock(&(phili->global->alive_mutex));
 			phili->global->dead = 1;
+			ft_message("DEAED", phili);
+			pthread_mutex_unlock(&(phili->global->alive_mutex));
+
 			pthread_mutex_unlock(&phili->meal);
 			return 0;
 		}
 		pthread_mutex_unlock(&phili->meal);
 	}
+	// printf("hi\n");
 	return 0;
 }
 
@@ -164,6 +169,7 @@ void	parse_args(int argc, char **argv, t_global *global)
 	}
 	global->number = ft_atoi(argv[1]);
 	global->to_die = ft_atoi(argv[2]) ;
+
 	global->to_eat = ft_atoi(argv[3]) * 1000;
 	global->to_sleep = ft_atoi(argv[4]) *1000;
 	global->start = get_time();
@@ -180,6 +186,8 @@ int main(int argc, char **argv)
 	t_global global;
 
 	pthread_mutex_init(&global.mutex, NULL);
+	pthread_mutex_init(&global.display, NULL);
+		pthread_mutex_init(&global.alive_mutex, NULL);
 	parse_args(argc, argv, &global);
 	t_phili **p = create_list(&global);
 	int i = 0;
@@ -188,12 +196,11 @@ int main(int argc, char **argv)
 	start_thread(p, global.number);
 	while (i < global.number)
 	{
-
 		pthread_detach(p[i]->tid);
 		i++;
 	}
 
-	pthread_mutex_init(&global.alive_mutex, NULL);
+
 	while (global.number)
 	{
 		pthread_mutex_lock(&global.alive_mutex);
@@ -209,5 +216,8 @@ int main(int argc, char **argv)
 	{
 		ft_putstr_fd("eaten enough \n", 1);
 	}
+
+	i  =  0;
+ 
 	return 0;
 }

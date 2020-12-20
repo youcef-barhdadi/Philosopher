@@ -21,36 +21,37 @@
 	typedef struct s_global
 {
 	int	number;
-	unsigned long to_die;
-	unsigned long to_eat;
-	unsigned long to_sleep;
+	 long to_die;
+	 long to_eat;
+	 long to_sleep;
 	int		dead;
 	int		time;
 	long 		start;
 	pthread_mutex_t 	mutex;
 	pthread_mutex_t alive_mutex;
 	unsigned how;
+	pthread_mutex_t display;
 }		t_global;
 
 
 typedef struct s_phili
 {
-	pthread_mutex_t take;
-	pthread_mutex_t meal;
-	pthread_t	tid;
-	pthread_t	check;
-	unsigned		eat;
-	int 		fork;
-	int 		number;
-	pthread_mutex_t mutex;
-	pthread_mutex_t status;
-	t_global *global;
-	long long 	last_meal;
-	struct s_phili 	*next;
-	struct s_phili 	*perv;
-	int	last;
+	pthread_mutex_t 	take;
+	pthread_mutex_t 	meal;
+	pthread_t			tid;
+	pthread_t			check;
+	unsigned			eat;
+	int 				fork;
+	int 				number;
+	pthread_mutex_t 	mutex;
+	pthread_mutex_t 	status;
+	t_global 			*global;
+	 long 				last_meal;
+	struct s_phili 		*next;
+	struct s_phili 		*perv;
+	int					last;
 
-}		t_phili;
+}						t_phili;
 
 
 int		ft_atoi(const char *str);
