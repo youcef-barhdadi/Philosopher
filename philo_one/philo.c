@@ -216,8 +216,6 @@ int main(int argc, char **argv)
 	{
 		ft_putstr_fd("eaten enough \n", 1);
 	}
-
-	i  =  0;
  
 	return 0;
 }
