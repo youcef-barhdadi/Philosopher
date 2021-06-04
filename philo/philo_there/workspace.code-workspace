@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "philo_two",
+			"path": "../../../.Trash/philo_two"
+		},
+		{
+			"name": "philo",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ft_philo.h": "c"
+		}
+	}
+}

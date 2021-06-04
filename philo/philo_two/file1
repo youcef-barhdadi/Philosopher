@@ -1,0 +1,42 @@
+0 philpspher 1 THINKING
+0 philpspher 1 TAKE A FORK
+0 philpspher 1 TAKE A FORK
+0 philpspher 1 EATING
+0 philpspher 3 THINKING
+0 philpspher 3 TAKE A FORK
+0 philpspher 3 TAKE A FORK
+0 philpspher 3 EATING
+200 philpspher 2 THINKING
+200 philpspher 4 THINKING
+200 philpspher 1 SLEEPING
+205 philpspher 3 SLEEPING
+205 philpspher 4 TAKE A FORK
+205 philpspher 4 TAKE A FORK
+206 philpspher 4 EATING
+206 philpspher 2 TAKE A FORK
+206 philpspher 2 TAKE A FORK
+206 philpspher 2 EATING
+401 philpspher 1 THINKING
+407 philpspher 4 SLEEPING
+407 philpspher 2 SLEEPING
+407 philpspher 1 TAKE A FORK
+407 philpspher 1 TAKE A FORK
+407 philpspher 1 EATING
+409 philpspher 3 THINKING
+409 philpspher 3 TAKE A FORK
+409 philpspher 3 TAKE A FORK
+409 philpspher 3 EATING
+607 philpspher 2 THINKING
+608 philpspher 4 THINKING
+608 philpspher 1 SLEEPING
+614 philpspher 3 SLEEPING
+614 philpspher 4 TAKE A FORK
+615 philpspher 4 TAKE A FORK
+615 philpspher 4 EATING
+615 philpspher 2 TAKE A FORK
+615 philpspher 2 TAKE A FORK
+615 philpspher 2 EATING
+809 philpspher 1 THINKING
+815 philpspher 3 THINKING
+818 philpspher 1 DIE 
+[411]
