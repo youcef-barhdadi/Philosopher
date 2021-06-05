@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:48:43 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/04 14:34:33 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/05 13:07:56 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_phili
     t_global            *global;
 	struct s_phili 		*perv;
 	int					last;
+	pthread_t  checkDeath;
 
 }						t_phili;
 

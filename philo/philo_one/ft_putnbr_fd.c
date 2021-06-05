@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarhdad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 02:52:23 by ybarhdad          #+#    #+#             */
-/*   Updated: 2020/06/06 07:24:52 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/05 20:45:40 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_philo.h"
+#include "philo.h"
 
 void	ft_putnbr_fd(int nbr, int fd)
 {

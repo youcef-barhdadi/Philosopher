@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:47:58 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/04 13:27:45 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/04 18:15:05 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	mysleep(long target)
 
 	start = get_time();
 	while (get_time() - start < target)
-		usleep(100);
+		usleep(1);
 }
 
 void	lanch_thread(t_phili **thread, int number)
@@ -75,12 +75,14 @@ void	checkDeath(t_phili **listOfPhilo, t_global *global)
 	int	i;
 
 	i = -1;
-	while (!global->die && (global->number != global->eaten && ++i < global->number))
+	while (!global->die && global->number != global->eaten && ++i < global->number)
 	{
+		//  printf("%ld ÷  \n", get_time() - listOfPhilo[i]->last_meal );
 		if (get_time() - global->to_die > listOfPhilo[i]->last_meal)
 		{
 			ft_message("DIE ", listOfPhilo[i]);
-			global->die++;
+			global->die = 1;
+			return ;
 		}
 		if (i == global->number - 1)
 			i = 0;

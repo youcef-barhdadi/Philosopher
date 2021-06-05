@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 21:03:11 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/04 14:36:37 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/04 20:26:59 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	free_all(t_phili **philo)
 	free(philo);
 	exit(0);
 }
+# include <errno.h>
 
 void *start_phili(void *a)
 {
@@ -60,8 +61,11 @@ void *start_phili(void *a)
     while (!phili->global->die && phili->global->number != phili->global->eaten)
     {
         ft_message("THINKING", phili);
-        	sem_wait(phili->global->mutex);
-        eat(phili);    sem_post(phili->global->mutex);
+        sem_wait(phili->global->mutex);
+     
+       eat(phili);
+		sem_post(phili->global->mutex);
+
 		mysleep(phili->global->to_sleep  );
         ft_message("SLEEPING", phili);
         if (phili->eat == phili->global->how)
@@ -79,8 +83,9 @@ void	create_thread(t_global *global, t_phili **list, int i)
 
 	list[i] = malloc(sizeof(t_phili));
 	memset(list[i], 0, sizeof(t_phili));
-    sem_unlink("mutex");
-	global->mutex = sem_open("mutex",  O_CREAT, 0666,global->number);
+    sem_unlink("/mutex");
+	if ((global->mutex = sem_open("/mutex",  O_CREAT, 0666, global->number / 2 )) == SEM_FAILED)
+		exit(0);
 	list[i]->number = i + 1;
 	list[i]->last_meal = get_time();
 	list[i]->global = global;

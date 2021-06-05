@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarhdad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 14:51:00 by ybarhdad          #+#    #+#             */
-/*   Updated: 2020/06/06 07:22:38 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/05 20:45:44 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_philo.h"
+#include "philo.h"
 
 static	void	ft_swap(char *a, char *b)
 {
-	char tmp;
+	char	tmp;
 
 	tmp = *a;
 	*a = *b;
@@ -36,7 +36,7 @@ static	void	ft_reverse(char *str)
 	}
 }
 
-static	int		ft_nbrlen(int nbr)
+static	int	ft_nbrlen(int nbr)
 {
 	long	nnbr;
 	int		len;
@@ -82,7 +82,7 @@ static	void	fill(char *str, long long nnbr)
 	ft_reverse(str + sign);
 }
 
-char			*ft_lltoa(long long nbr)
+char	*ft_lltoa(long long nbr)
 {
 	long long	nnbr;
 	char		*str;
