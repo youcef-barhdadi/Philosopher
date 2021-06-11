@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:47:58 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/11 18:41:51 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:04:13 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,40 @@ void	lanch_thread(t_phili **thread, int number)
 {
 	int	i;
 	int	num;
+	int stat;
+	int status;
 
 	i = 0;
 	while (i < number)
 	{
-		num = pthread_create(&thread[i]->tid,
-				NULL, start_phili, (void *) thread[i]);
-		if (num != 0)
+		
+		thread[i]->tid = fork();
+		if (thread[i]->tid)
 		{
-			free_all(thread);
-			return ;
+			start_phili(thread[i]);
 		}
+		else if (thread[i]->tid  < 0)
+	{
+		perror("fasfdas");
+	}
 		i++;
 	}
+	    int j = 0;
+     i = 0;
+int k = 0;
+    while (waitpid(-1, &stat, 0 ) && thread[i]->global->eaten < thread[i]->global->number)
+    {
+        status = WEXITSTATUS(stat);
+		if (status == 1){
+			while (k < thread[0]->global->number)
+				kill(thread[k++]->tid, SIGKILL);
+                break ;
+        }
+        else {
+                thread[0]->global->eaten++;
+        }
+      
+    }
 }
 void deatch_thread(t_phili **phili)
 {

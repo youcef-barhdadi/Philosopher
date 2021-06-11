@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:47:58 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/05 20:56:42 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/10 16:30:35 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,39 @@ void	lanch_thread(t_phili **thread, int number)
 	}
 }
 
+void deatch_thread(t_phili **phili)
+{
+	int	i;
+	
+	i = 0;
+	while (i < phili[0]->global->number)
+	{
+		pthread_detach(phili[i]->tid);
+		i++;
+	}
+}
+
 void	checkDeath(t_phili **listOfPhilo, t_global *global)
 {
 	int	i;
+	int j;
 
 	i = -1;
 	while (global->alive == global->number && ++i < global->number)
 	{
-		if (get_time() - global->to_die > listOfPhilo[i]->last_meal)
-		{
-			ft_message("DIE ", listOfPhilo[i]);
-			global->alive--;
-			global->die = 1;
-		}
+			if (get_time() - global->to_die > listOfPhilo[i]->last_meal)
+			{
+				printf("%s", RED);
+				ft_message("DIE ", listOfPhilo[i]);
+				printf("%s", RESET);
+				global->alive--;
+				global->die = 1;
+				deatch_thread(listOfPhilo);
+				return ;
+			}
 		if (i == global->number - 1)
 			i = 0;
+		usleep(10);
 	}
 }
 
@@ -98,9 +116,14 @@ int	main (int argc, char **argv)
 	i = -1;
 	while (++i < global->number)
 	{
-		pthread_detach(listOfPhilo[i]->tid);
+		pthread_join(listOfPhilo[i]->tid, NULL);
 	}
 	if (global->number == global->eaten)
+	{
+		printf("%s", GREEN);
 		printf("kulchi kal\n");
+		printf("%s", RESET);
+
+	}
 	return (0);
 }

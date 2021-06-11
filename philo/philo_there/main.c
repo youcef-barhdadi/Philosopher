@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:47:58 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/05 18:46:08 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:09:20 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ void *check_death(void *a)
                 phili->global->die = 1;
                 exit(1);
         }
-
     }
     return NULL;
 }
@@ -153,25 +152,25 @@ void check(t_phili *phili)
 }
 
 
-
 void main_thread(void *a)
 {
-     t_phili  *phili = (t_phili *)a
-        int i =  pthread_create(&phili->checkDeath, NULL, start_phili, (void *) phili);
+     t_phili  *phili = (t_phili *)a;
+    int i =  pthread_create(&phili->checkDeath, NULL, check_death, (void *) phili);
+    
 
 }
 
 void *start_phili(void *a)
 {
    
-     t_phili  *phili = (t_phili *)a
+     t_phili  *phili = (t_phili *)a;
 
     phili->last_meal = get_time();
+    main_thread(phili);
     
     while (1)
     {
         ft_message("THINKING", phili);
-        sem_wait(phili->global->mutex);
         sem_wait(phili->global->mutex);
         check(phili);
 		ft_message("TAKE A FORK", phili);
@@ -180,7 +179,6 @@ void *start_phili(void *a)
 		phili->eat ++;
     	phili->last_meal = get_time();
         mysleep(phili->global->to_eat );
-        sem_post(phili->global->mutex);
         sem_post(phili->global->mutex);
         ft_message("SLEEPING", phili);
 		mysleep(phili->global->to_sleep  );
@@ -198,6 +196,8 @@ void *start_phili(void *a)
 }
 
 
+
+ 
 void    lanch_thread(t_phili **thread, int number)
 {
 

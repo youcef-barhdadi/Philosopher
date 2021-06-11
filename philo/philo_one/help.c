@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 19:28:00 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/05 20:45:35 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/07 15:36:16 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	eat(t_phili *phili)
 {
 	pthread_mutex_lock(&phili->mutex);
 	pthread_mutex_lock(&phili->next->mutex);
+	phili->eating = 1;
 	ft_message("TAKE A FORK", phili);
 	ft_message("TAKE A FORK", phili);
 	ft_message("EATING", phili);
@@ -40,6 +41,7 @@ void	eat(t_phili *phili)
 	mysleep(phili->global->to_eat);
 	pthread_mutex_unlock(&phili->next->mutex);
 	pthread_mutex_unlock(&phili->mutex);
+	phili->eating = 0;
 }
 
 long	get_time(void)
@@ -86,8 +88,10 @@ t_phili	**create_list(t_global *global)
 		i++;
 	}
 	list[0]->perv = list[global->number - 1];
+	list[0]->done = 0;
 	list[global->number - 1]->next = list[0];
 	ret = pthread_mutex_init(&list[0]->global->display, NULL);
+	ret = pthread_mutex_init(&list[0]->global->eat_mutex, NULL);
 	if (ret != 0 )
 	{
 		perror("error ");

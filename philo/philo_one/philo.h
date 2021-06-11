@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 07:48:43 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/05 20:48:07 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/10 16:27:19 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <sys/time.h>
 # include <limits.h>
 
+#define RED     "\033[31m"      /* Red */
+ #define RESET   "\033[0m"
+#define GREEN   "\033[32m"      /* Green */
+
 typedef struct s_global
 {
 	int				number;
@@ -33,6 +37,8 @@ typedef struct s_global
 	int				alive;
 	int				die;
 	pthread_mutex_t	display;
+	pthread_mutex_t	eat_mutex;
+
 }					t_global;
 
 typedef struct s_phili
@@ -51,6 +57,8 @@ typedef struct s_phili
 	t_global			*global;
 	struct s_phili		*perv;
 	int					last;
+	int					eating;
+	int					done;
 
 }				t_phili;
 

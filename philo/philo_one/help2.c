@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 20:22:02 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/05 20:45:32 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/10 16:18:05 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_message(char *str, t_phili *phili)
 
 	pthread_mutex_lock(&phili->global->display);
 	stamp = get_time() - phili->global->start;
-	printf("%ld  philopshper %d %s\n", stamp, phili->number, str);
+	printf("%ld  philopshper %d %s\n", stamp / 1000, phili->number, str);
 	pthread_mutex_unlock(&phili->global->display);
 }
 
@@ -43,13 +43,16 @@ void	*start_phili(void *a)
 	{
 		ft_message("THINKING", phili);
 		eat(phili);
-		ft_message("SLEEPING", phili);
-		mysleep(phili->global->to_sleep);
 		if (phili->eat == phili->global->how)
 		{
-			phili->global->eaten++;
+			pthread_mutex_lock(&phili->global->eat_mutex);
+			phili->global->eaten += 1;
+			pthread_mutex_unlock(&phili->global->eat_mutex);
+			phili->done = 1;
 			break ;
 		}
+		ft_message("SLEEPING", phili);
+		mysleep(phili->global->to_sleep);
 	}
 	phili->global->alive--;
 	return (NULL);

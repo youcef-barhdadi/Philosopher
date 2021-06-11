@@ -6,7 +6,7 @@
 /*   By: ybarhdad <ybarhdad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 21:03:11 by ybarhdad          #+#    #+#             */
-/*   Updated: 2021/06/11 18:41:32 by ybarhdad         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:04:55 by ybarhdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	free_all(t_phili **philo)
 	free(philo);
 	exit(0);
 }
-# include <errno.h>
+
+
+void check_death()
 
 void *start_phili(void *a)
 {
@@ -70,7 +72,7 @@ void *start_phili(void *a)
             break ;
         }
 		sem_post(phili->global->mutex);
-		mysleep(phili->global->to_sleep  );
+		mysleep(phili->global->to_sleep);
         ft_message("SLEEPING", phili);
 
     }    
